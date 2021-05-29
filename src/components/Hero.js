@@ -7,7 +7,7 @@ import SocialLinks from "../constants/socialLinks"
 const query = graphql`
   {
     file(relativePath: { eq: "hero-img.png" }) {
-      childrenImageSharp {
+      childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
         }
@@ -17,21 +17,19 @@ const query = graphql`
 `
 
 const Hero = () => {
-  const data = useStaticQuery(query)
   const {
     file: {
       childImageSharp: { fluid },
     },
-  } = data
+  } = useStaticQuery(query)
 
   return (
     <header className="hero">
       <div className="section-center hero-center">
         <article className="hero-info">
           <div>
-            <Image fluid={fluid} className="hero-img" />
             <div className="underline"></div>
-            <h1>saidramdhan</h1>
+            <h1>I'm Said</h1>
             <h4>freelance web developer</h4>
             <Link to="/contact" className="btn">
               contact me
@@ -39,6 +37,7 @@ const Hero = () => {
             <SocialLinks />
           </div>
         </article>
+        <Image fluid={fluid} className="hero-img" />
       </div>
     </header>
   )
